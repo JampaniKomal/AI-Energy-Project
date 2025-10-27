@@ -1,0 +1,21 @@
+# requirements.txt for AI Energy Project
+#
+# Setup:
+#   1. Create a virtual environment:
+#        python -m venv project_env
+#   2. Activate it:
+#        Windows (PowerShell/CMD): .\project_env\Scripts\activate
+#        macOS/Linux: source project_env/bin/activate
+#   3. Install requirements:
+#        pip install -r requirements.txt
+#
+# Usage:
+#   1. Run the training script ONCE:
+#        python train_model.py
+#   2. Run the GUI application:
+#        python app.py
+#
+pandas
+numpy
+scikit-learn
+joblib
