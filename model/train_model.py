@@ -19,9 +19,7 @@ warnings.filterwarnings('ignore')
 print("--- AI Model Trainer V2 ---")
 
 # Ensure the output directory exists
-output_dir = os.path.join(os.path.dirname(__file__), '..', 'saved_models')
-# Normalize path for Windows
-output_dir = os.path.normpath(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'saved_models')))
+output_dir = '../saved_models'
 os.makedirs(output_dir, exist_ok=True)
 
 # --- 1. Generate Expanded Synthetic Dataset ---
@@ -69,11 +67,11 @@ def calculate_kwh(row):
     daily_kwh += row['has_geyser'] * WATTAGE['geyser'] * 1.5
     daily_kwh += row['has_fridge'] * WATTAGE['fridge']
     daily_kwh += (row['house_size_sqft'] / 1000) * 0.6 # Increased impact
-    
+
     inefficiency_factor = 1 + (row['appliance_age_years'] * 0.015) # Increased impact
-    
+
     noise = np.random.uniform(0.93, 1.07) # Increased randomness
-    
+
     monthly_kwh = (daily_kwh * 30 *
                    CITY_MULTIPLIER[row['city']] *
                    BUILDING_FACTOR[row['building_type']] *
@@ -130,7 +128,12 @@ model_pipeline.fit(X_train, y_train)
 print("\n--- Model Evaluation ---")
 y_pred = model_pipeline.predict(X_test)
 r2 = r2_score(y_test, y_pred)
-rmse = mean_squared_error(y_test, y_pred, squared=False)
+# --- WORKAROUND for older sklearn versions ---
+# Calculate RMSE manually: sqrt(MSE)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+# Original line causing error: rmse = mean_squared_error(y_test, y_pred, squared=False)
+# --- End Workaround ---
 print(f"Model R-squared (R2) Score on Test Data: {r2:.4f}")
 print(f"Root Mean Squared Error (RMSE) on Test Data: {rmse:.2f} kWh")
 
@@ -149,7 +152,7 @@ feature_names = numeric_features + \
 with open(os.path.join(output_dir, 'model_columns.txt'), 'w') as f:
     for name in feature_names:
         f.write(name + '\n')
-        
+
 # Save the original categorical feature names needed for the GUI dropdowns
 # We can infer these from the ColumnTransformer
 original_categorical_features = {
@@ -160,3 +163,4 @@ joblib.dump(original_categorical_features, os.path.join(output_dir, 'categorical
 
 
 print("--- Training complete. Model artefacts saved. ---")
+
