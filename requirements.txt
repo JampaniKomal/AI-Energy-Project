@@ -17,5 +17,6 @@
 #
 pandas
 numpy
-scikit-learn
+scikit-learn>=1.0 # Ensure version supports squared=False and get_feature_names_out
 joblib
+customtkinter
