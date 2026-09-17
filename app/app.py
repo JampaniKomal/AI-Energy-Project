@@ -1,5 +1,5 @@
 # AI Energy Project - Step 2 (V2.1): GUI with Enhanced Model Loading
-# Uses customtkinter and loads the pipeline from train_model_v2.py
+# Uses customtkinter and loads the pipeline from model/train_model.py
 
 import tkinter as tk
 import customtkinter as ctk
@@ -29,7 +29,7 @@ except FileNotFoundError:
     messagebox.showerror(
         "Error", 
         f"Model files not found in '{MODEL_DIR}'!\n\n"
-        "Please run 'model/train_model_v2.py' first."
+        "Please run 'model/train_model.py' first."
     )
     exit()
 except Exception as e:

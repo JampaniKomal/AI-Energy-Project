@@ -35,8 +35,7 @@ venv.bak/
 
 # Project specific ignores
 saved_models/
-*.joblib
-*.txt
+.pytest_cache/
 
 # IDE files
 .idea/
