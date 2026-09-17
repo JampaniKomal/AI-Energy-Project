@@ -4,6 +4,8 @@ Predicts monthly household electricity consumption (kWh) for Indian
 households from a Gradient Boosting model, served through a desktop GUI
 that also shows an estimated cost breakdown per appliance category.
 
+![App screenshot: after clicking Predict, showing a real model prediction of 1017.17 kWh and an estimated Rs. 8137.35 bill](docs/app_screenshot.png)
+
 ## Why this exists
 
 A small end-to-end ML project: generate a realistic synthetic dataset,
