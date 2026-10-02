@@ -1,22 +1,8 @@
-# requirements.txt for AI Energy Project
-#
-# Setup:
-#   1. Create a virtual environment:
-#        python -m venv project_env
-#   2. Activate it:
-#        Windows (PowerShell/CMD): .\project_env\Scripts\activate
-#        macOS/Linux: source project_env/bin/activate
-#   3. Install requirements:
-#        pip install -r requirements.txt
-#
-# Usage:
-#   1. Run the training script ONCE:
-#        python train_model.py
-#   2. Run the GUI application:
-#        python app.py
-#
+# Runtime dependencies for the AI Energy Project.
+# See README.md for setup and usage (train with `python model/train_model.py`,
+# then launch the GUI with `python app/app.py`).
 pandas
 numpy
-scikit-learn>=1.0 # Ensure version supports squared=False and get_feature_names_out
+scikit-learn>=1.0  # needs get_feature_names_out (ColumnTransformer feature names)
 joblib
 customtkinter

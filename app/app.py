@@ -6,7 +6,6 @@ import customtkinter as ctk
 from tkinter import messagebox
 import joblib
 import pandas as pd
-import numpy as np
 import os
 
 # --- Constants ---
